@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header, Nav, Logo, NavLinks, Footer, FooterContent, FooterBottom } from '@/styles/layout';
 import Link from 'next/link';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -16,6 +17,28 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <li><Link href="/security">Security</Link></li>
             <li><Link href="/dashboard">Dashboard</Link></li>
           </NavLinks>
+
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            {/* Authentication controls */}
+            {(() => {
+              const { data: session, status } = useSession();
+              if (status === 'loading') return <div>Loading...</div>;
+              if (!session) {
+                return (
+                  <>
+                    <a onClick={(e) => { e.preventDefault(); signIn(); }} href="#">Sign In</a>
+                  </>
+                );
+              }
+
+              return (
+                <>
+                  <span style={{ fontSize: '0.95rem' }}>{session.user?.email}</span>
+                  <a onClick={(e) => { e.preventDefault(); signOut({ callbackUrl: '/' }); }} href="#">Sign Out</a>
+                </>
+              );
+            })()}
+          </div>
         </Nav>
       </Header>
 
