@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { Container, Section, Button } from '@/styles/components';
+import { useRouter } from 'next/router';
 
 const HeroSection = styled(Section)`
   background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
@@ -57,6 +58,8 @@ const FeatureCard = styled.div`
 `;
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -72,7 +75,7 @@ export default function Home() {
         <Container>
           <h1>Building User Trust</h1>
           <p>Security, Privacy, and Transparency in Subscription Management</p>
-          <HeroButton onClick={() => window.location.href = '/auth/register'}>
+          <HeroButton onClick={() => router.push('/auth/register')}>
             Get Started
           </HeroButton>
         </Container>
@@ -144,7 +147,7 @@ export default function Home() {
           <p>
             Join thousands of users who've taken control of their subscriptions with confidence. Start for free today.
           </p>
-          <Button onClick={() => window.location.href = '/auth/register'} style={{ marginTop: '1rem' }}>
+          <Button style={{ marginTop: '1rem' }} onClick={() => router.push('/auth/register')}>
             Create Your Account
           </Button>
         </Section>
