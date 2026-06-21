@@ -76,11 +76,27 @@ export default function Register() {
     // In production, make API call to register
     console.log('Registration attempt:', { email, password });
 
-    setTimeout(() => {
+    try {
+      const resp = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name: '' }),
+      });
+
+      if (!resp.ok) {
+        const j = await resp.json();
+        setError(j.error || 'Registration failed');
+        setLoading(false);
+        return;
+      }
+
       setLoading(false);
-      // Redirect to dashboard on success
-      router.push('/dashboard');
-    }, 1000);
+      // Auto sign in after register
+      router.push('/auth/login');
+    } catch (err) {
+      setError('Registration failed');
+      setLoading(false);
+    }
   };
 
   return (

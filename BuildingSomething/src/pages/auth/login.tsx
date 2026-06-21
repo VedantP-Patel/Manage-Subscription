@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Container, Section, Form, FormGroup, Button } from '@/styles/components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 
 const AuthContainer = styled.div`
   max-width: 400px;
@@ -38,15 +39,14 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // In production, make API call to authenticate
-    console.log('Login attempt:', { email, password });
-    
-    setTimeout(() => {
-      setLoading(false);
-      // Redirect to dashboard on success
+    // Use NextAuth signIn
+    const res = await signIn('credentials', { redirect: false, email, password });
+    setLoading(false);
+    if (res && (res as any).error) {
+      alert((res as any).error || 'Login failed');
+    } else {
       router.push('/dashboard');
-    }, 1000);
+    }
   };
 
   return (

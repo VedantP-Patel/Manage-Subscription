@@ -121,3 +121,20 @@ export default function Dashboard() {
     </>
   );
 }
+
+export async function getServerSideProps(context: any) {
+  const { getServerSession } = await import('next-auth/next');
+  const { authOptions } = await import('./api/auth/[...nextauth]');
+
+  const session = await getServerSession(context.req, context.res, authOptions as any);
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}

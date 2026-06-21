@@ -39,23 +39,7 @@ const FeatureGrid = styled.div`
   margin: 2rem 0;
 `;
 
-const FeatureCard = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  border-left: 4px solid #0066cc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  h3 {
-    color: #0066cc;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: #666;
-    line-height: 1.6;
-  }
-`;
+import FeatureCard from '@/components/FeatureCard';
 
 export default function Home() {
   const router = useRouter();
@@ -93,53 +77,17 @@ export default function Home() {
 
         <h2>Core Principles</h2>
         <FeatureGrid>
-          <FeatureCard>
-            <h3>🔒 No Banking Credentials</h3>
-            <p>
-              Your banking credentials are never shared with us. We use secure open-banking APIs that give you full
-              control over what data we access.
-            </p>
-          </FeatureCard>
+          <FeatureCard icon="🔒" title="No Banking Credentials" description="Your banking credentials are never shared with us. We use secure open-banking APIs that give you full control over what data we access." />
 
-          <FeatureCard>
-            <h3>🔐 Zero-Knowledge Architecture</h3>
-            <p>
-              Sensitive credentials are encrypted on your device. Our servers cannot read them. Decryption happens in
-              isolated, temporary environments that are destroyed after use.
-            </p>
-          </FeatureCard>
+          <FeatureCard icon="🔐" title="Zero-Knowledge Architecture" description="Sensitive credentials are encrypted on your device. Our servers cannot read them. Decryption happens in isolated, temporary environments that are destroyed after use." />
 
-          <FeatureCard>
-            <h3>👁️ Complete Transparency</h3>
-            <p>
-              Every action is recorded and displayed in real time. You can review and approve workflows before
-              execution. No hidden operations.
-            </p>
-          </FeatureCard>
+          <FeatureCard icon="👁️" title="Complete Transparency" description="Every action is recorded and displayed in real time. You can review and approve workflows before execution. No hidden operations." />
 
-          <FeatureCard>
-            <h3>🛡️ Security First</h3>
-            <p>
-              SOC 2 Type II certification, GDPR/CCPA compliance, independent security audits, and bug bounty programs
-              ensure ongoing security.
-            </p>
-          </FeatureCard>
+          <FeatureCard icon="🛡️" title="Security First" description="SOC 2 Type II certification, GDPR/CCPA compliance, independent security audits, and bug bounty programs ensure ongoing security." />
 
-          <FeatureCard>
-            <h3>⚙️ Aligned Incentives</h3>
-            <p>
-              You're our customer, not our product. We don't sell data, build advertising profiles, or share your
-              information with third parties.
-            </p>
-          </FeatureCard>
+          <FeatureCard icon="⚙️" title="Aligned Incentives" description="You're our customer, not our product. We don't sell data, build advertising profiles, or share your information with third parties." />
 
-          <FeatureCard>
-            <h3>📈 Gradual Rollout</h3>
-            <p>
-              Trust is earned incrementally. We start with discovery and analysis, then gradually unlock more powerful
-              features as you gain confidence.
-            </p>
-          </FeatureCard>
+          <FeatureCard icon="📈" title="Gradual Rollout" description="Trust is earned incrementally. We start with discovery and analysis, then gradually unlock more powerful features as you gain confidence." />
         </FeatureGrid>
 
         <Section style={{ marginTop: '4rem' }}>
