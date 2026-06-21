@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { Container, Section, Card, Button } from '@/styles/components';
+import { useRouter } from 'next/router';
 
 const DashboardGrid = styled.div`
   display: grid;
@@ -40,6 +41,7 @@ const AlertBox = styled.div`
 `;
 
 export default function Dashboard() {
+  const router = useRouter();
   const isLoggedIn = false; // In production, check actual auth state
 
   if (!isLoggedIn) {
@@ -52,7 +54,7 @@ export default function Dashboard() {
           <Section>
             <h1>Dashboard</h1>
             <p>Please log in to access your dashboard.</p>
-            <Button onClick={() => window.location.href = '/auth/login'}>
+            <Button onClick={() => router.push('/auth/login')}>
               Log In
             </Button>
           </Section>

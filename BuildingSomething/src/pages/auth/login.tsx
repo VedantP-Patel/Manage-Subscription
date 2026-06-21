@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { Container, Section, Form, FormGroup, Button } from '@/styles/components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const AuthContainer = styled.div`
   max-width: 400px;
@@ -28,6 +30,7 @@ const AuthLink = styled.p`
 `;
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -42,7 +45,7 @@ export default function Login() {
     setTimeout(() => {
       setLoading(false);
       // Redirect to dashboard on success
-      window.location.href = '/dashboard';
+      router.push('/dashboard');
     }, 1000);
   };
 
@@ -88,7 +91,7 @@ export default function Login() {
             </Form>
 
             <AuthLink>
-              Don't have an account? <a href="/auth/register">Sign up here</a>
+              Don't have an account? <Link href="/auth/register">Sign up here</Link>
             </AuthLink>
           </AuthCard>
         </AuthContainer>

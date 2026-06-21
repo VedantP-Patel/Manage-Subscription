@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { Container, Section, Form, FormGroup, Button } from '@/styles/components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const AuthContainer = styled.div`
   max-width: 400px;
@@ -47,6 +49,7 @@ const TermsCheckbox = styled.div`
 `;
 
 export default function Register() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -76,7 +79,7 @@ export default function Register() {
     setTimeout(() => {
       setLoading(false);
       // Redirect to dashboard on success
-      window.location.href = '/dashboard';
+      router.push('/dashboard');
     }, 1000);
   };
 
@@ -143,8 +146,8 @@ export default function Register() {
                   required
                 />
                 <label htmlFor="terms">
-                  I agree to the <a href="/terms">Terms of Service</a> and{' '}
-                  <a href="/privacy">Privacy Policy</a>
+                  I agree to the <Link href="/terms">Terms of Service</Link> and{' '}
+                  <Link href="/privacy">Privacy Policy</Link>
                 </label>
               </TermsCheckbox>
 
@@ -154,7 +157,7 @@ export default function Register() {
             </Form>
 
             <AuthLink>
-              Already have an account? <a href="/auth/login">Log in here</a>
+              Already have an account? <Link href="/auth/login">Log in here</Link>
             </AuthLink>
           </AuthCard>
         </AuthContainer>

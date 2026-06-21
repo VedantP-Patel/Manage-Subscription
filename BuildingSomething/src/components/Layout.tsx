@@ -1,17 +1,20 @@
 import React from 'react';
 import { Header, Nav, Logo, NavLinks, Footer, FooterContent, FooterBottom } from '@/styles/layout';
+import Link from 'next/link';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <Header>
         <Nav>
-          <Logo>TrustVault</Logo>
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            <Logo>TrustVault</Logo>
+          </Link>
           <NavLinks>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/security">Security</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/about">About</Link></li>
+            <li><Link href="/security">Security</Link></li>
+            <li><Link href="/dashboard">Dashboard</Link></li>
           </NavLinks>
         </Nav>
       </Header>
@@ -23,33 +26,33 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           <div>
             <h4>About</h4>
             <ul>
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/careers">Careers</a></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
             </ul>
           </div>
           <div>
             <h4>Security</h4>
             <ul>
-              <li><a href="/security">Security Overview</a></li>
-              <li><a href="/privacy">Privacy Policy</a></li>
-              <li><a href="/terms">Terms of Service</a></li>
+              <li><Link href="/security">Security Overview</Link></li>
+              <li><Link href="/privacy">Privacy Policy</Link></li>
+              <li><Link href="/terms">Terms of Service</Link></li>
             </ul>
           </div>
           <div>
             <h4>Support</h4>
             <ul>
-              <li><a href="/help">Help Center</a></li>
-              <li><a href="/contact">Contact Us</a></li>
-              <li><a href="/feedback">Send Feedback</a></li>
+              <li><Link href="/help">Help Center</Link></li>
+              <li><Link href="/contact">Contact Us</Link></li>
+              <li><Link href="/feedback">Send Feedback</Link></li>
             </ul>
           </div>
         </FooterContent>
         <FooterBottom>
           <p>&copy; 2024 TrustVault. All rights reserved.</p>
           <div>
-            <a href="/privacy" style={{ marginRight: '2rem' }}>Privacy</a>
-            <a href="/terms">Terms</a>
+            <Link href="/privacy" style={{ marginRight: '2rem' }}>Privacy</Link>
+            <Link href="/terms">Terms</Link>
           </div>
         </FooterBottom>
       </Footer>
